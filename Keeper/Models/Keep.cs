@@ -5,7 +5,9 @@ namespace Keeper.Models
     public class Keep
     {
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
         [Required]
         public string Img { get; set; } = "http://placehold.it/200x200";
