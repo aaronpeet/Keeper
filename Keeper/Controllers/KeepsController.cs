@@ -19,8 +19,9 @@ namespace Keeper.Controllers
             _keepsService = keepsService;
         }
 
-        [Authorize]
+        
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Keep>> Create([FromBody] Keep newKeep)
         {
             try
@@ -58,6 +59,26 @@ namespace Keeper.Controllers
             try
             {
                 Keep keep = _keepsService.GetById(id);
+                return Ok(keep);
+            }
+            catch (System.Exception error)
+            {
+
+                return BadRequest(error.Message);
+            }
+        }
+
+        
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<ActionResult<Keep>> Edit([FromBody] Keep updatedKeep, int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                updatedKeep.CreatorId = userInfo.Id;
+                updatedKeep.Id = id;
+                Keep keep = _keepsService.Edit(updatedKeep);
                 return Ok(keep);
             }
             catch (System.Exception error)

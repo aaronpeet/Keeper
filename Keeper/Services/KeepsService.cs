@@ -34,5 +34,22 @@ namespace Keeper.Services
             return found;
         }
 
+        internal Keep Edit(Keep updatedKeep)
+        {
+            Keep original = GetById(updatedKeep.Id);
+            if(original.CreatorId != updatedKeep.CreatorId)
+            {
+                throw new System.Exception("Hands off buddy.");
+            }
+            original.Name = updatedKeep.Name != null ? updatedKeep.Name : original.Name;
+            original.Description = updatedKeep.Description != null ? updatedKeep.Description : original.Description;
+            original.Img = updatedKeep.Img != null ? updatedKeep.Img : original.Img;
+            original.Views = updatedKeep.Views != null ? updatedKeep.Views : original.Views;
+            original.Shares = updatedKeep.Shares != null ? updatedKeep.Shares : original.Shares;
+            original.Keeps = updatedKeep.Keeps != null ? updatedKeep.Keeps : original.Keeps;
+            _keepsRepo.Edit(original);
+            return original;
+        }
+
     }
 }

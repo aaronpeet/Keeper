@@ -24,19 +24,54 @@ namespace Keeper.Repositories
             SELECT LAST_INSERT_ID();
             ";
             newKeep.Id = _db.ExecuteScalar<int>(sql, newKeep);
-            return newKeep;
+            return GetById(newKeep.Id);
         }
 
         public List<Keep> Get()
         {
-            string sql = "SELECT * FROM keeps;";
-            return _db.Query<Keep>(sql).ToList();
+            string sql = @"
+            SELECT
+            a.*,
+            k.*
+            FROM keeps k
+            JOIN accounts a ON a.id = k.creatorId
+            ;";
+            return _db.Query<Profile, Keep, Keep>(sql, (prof, keep)=>{
+                keep.Creator = prof;
+                return keep;
+            }, splitOn:"id").ToList();
         }
 
         public Keep GetById(int id)
         {
-            string sql = "SELECT * FROM keeps WHERE id = @id;";
-            return _db.QueryFirstOrDefault<Keep>(sql, new { id });
+            string sql = @"
+            SELECT
+            a.*,
+            k.* 
+            FROM keeps k 
+            JOIN accounts a ON a.id = k.creatorId
+            WHERE k.id = @id;";
+            return _db.Query<Profile, Keep, Keep>(sql, (prof, keep)=>{
+                keep.Creator = prof;
+                return keep;
+            }, new { id }, splitOn:"id").FirstOrDefault();
+        }
+
+        public Keep Edit(Keep updatedKeep)
+        {
+            string sql = @"
+            UPDATE keeps
+            SET
+            name = @Name,
+            description = @Description,
+            img = @Img,
+            views = @Views,
+            shares = @Shares,
+            keeps = @Keeps
+            WHERE id = @id
+            ;";
+            _db.Execute(sql, updatedKeep);
+            return updatedKeep;
         }
 
     }
