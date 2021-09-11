@@ -4,6 +4,7 @@ using Keeper.Models;
 using Keeper.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Keeper.Controllers
 {
@@ -27,6 +28,36 @@ namespace Keeper.Controllers
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 newKeep.CreatorId = userInfo.Id;
                 Keep keep = _keepsService.Create(newKeep);
+                return Ok(keep);
+            }
+            catch (System.Exception error)
+            {
+
+                return BadRequest(error.Message);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult<List<Keep>> Get()
+        {
+            try
+            {
+                List<Keep> keeps = _keepsService.Get();
+                return Ok(keeps);
+            }
+            catch (System.Exception error)
+            {
+
+                return BadRequest(error.Message);
+            }
+        }
+
+         [HttpGet("{id}")]
+        public ActionResult<Keep> GetById(int id)
+        {
+            try
+            {
+                Keep keep = _keepsService.GetById(id);
                 return Ok(keep);
             }
             catch (System.Exception error)

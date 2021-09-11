@@ -1,5 +1,6 @@
 using Keeper.Models;
 using Keeper.Repositories;
+using System.Collections.Generic;
 
 namespace Keeper.Services
 {
@@ -16,6 +17,21 @@ namespace Keeper.Services
         {
             Keep keep = _keepsRepo.Create(newKeep);
             return keep;
+        }
+
+        internal List<Keep> Get()
+        {
+            return _keepsRepo.Get();
+        }
+
+        internal Keep GetById(int id)
+        {
+            Keep found = _keepsRepo.GetById(id);
+            if(found == null)
+            {
+                throw new System.Exception("invalid id");
+            }
+            return found;
         }
 
     }
