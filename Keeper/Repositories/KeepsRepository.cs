@@ -16,9 +16,9 @@ namespace Keeper.Repositories
         public Keep Create(Keep newKeep)
         {
             string sql = @"
-            INSERT INTO keeps(name, description, img, creatorId)
+            INSERT INTO keeps(name, description, img, views, shares, keeps, creatorId)
             VALUES
-            (@Name, @Description, @Img, @CreatorId);
+            (@Name, @Description, @Img, @Views, @Shares, @Keeps, @CreatorId);
             SELECT LAST_INSERT_ID();
             ";
             newKeep.Id = _db.ExecuteScalar<int>(sql, newKeep);
