@@ -5,6 +5,7 @@ using Keeper.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System;
 
 namespace Keeper.Controllers
 {
@@ -80,6 +81,23 @@ namespace Keeper.Controllers
                 updatedKeep.Id = id;
                 Keep keep = _keepsService.Edit(updatedKeep);
                 return Ok(keep);
+            }
+            catch (System.Exception error)
+            {
+
+                return BadRequest(error.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<ActionResult<String>> Delete(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                _keepsService.Delete(id, userInfo.Id);
+                return Ok("DELORTED!");
             }
             catch (System.Exception error)
             {

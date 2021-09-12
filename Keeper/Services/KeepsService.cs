@@ -51,5 +51,15 @@ namespace Keeper.Services
             return original;
         }
 
+        internal void Delete(int keepId, string userId)
+        {
+            Keep toDelete = GetById(keepId);
+            if(toDelete.CreatorId != userId)
+            {
+                throw new System.Exception("Thats not your keep");
+            }
+            _keepsRepo.Delete(keepId);
+        }
+
     }
 }
