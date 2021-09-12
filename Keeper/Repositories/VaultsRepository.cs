@@ -47,5 +47,19 @@ namespace Keeper.Repositories
             string sql = "DELETE FROM vaults WHERE id = @id LIMIT 1;";
             _db.Execute(sql, new { id });
         }
+
+        public Vault Edit(Vault updatedVault)
+        {
+            string sql = @"
+            UPDATE vaults
+            SET
+            name = @Name,
+            description = @Description,
+            isPrivate = @IsPrivate
+            WHERE id = @id
+            ;";
+            _db.Execute(sql, updatedVault);
+            return updatedVault;
+        }
     }
 }

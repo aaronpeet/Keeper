@@ -36,5 +36,19 @@ namespace Keeper.Services
             _vaultsRepo.Delete(vaultId);
         }
 
+        internal Vault Edit(Vault updatedVault)
+        {
+            Vault original = GetById(updatedVault.Id);
+            if(original.CreatorId != updatedVault.CreatorId)
+            {
+                throw new System.Exception("Hands off Buddy!");
+            }
+            original.Name = updatedVault.Name != null ? updatedVault.Name : original.Name;
+            original.Description = updatedVault.Description != null ? updatedVault.Description : original.Description;
+            original.IsPrivate = updatedVault.IsPrivate != null ? updatedVault.IsPrivate : original.IsPrivate;
+            _vaultsRepo.Edit(original);
+            return original;
+        }
+
     }
 }
