@@ -38,6 +38,8 @@ namespace Keeper
 
             services.AddTransient<KeepsService>();
             services.AddTransient<KeepsRepository>();
+            services.AddTransient<VaultsService>();
+            services.AddTransient<VaultsRepository>();
         }
 
         private void ConfigureCors(IServiceCollection services)
