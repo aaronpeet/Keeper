@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Keeper.Models;
 using Keeper.Services;
+using System;
 
 namespace Keeper.Controllers
 {
@@ -27,6 +28,39 @@ namespace Keeper.Controllers
                 newVault.CreatorId = userInfo.Id;
                 Vault vault = _vaultsService.Create(newVault);
                 return Ok(vault);
+            }
+            catch (System.Exception error)
+            {
+
+                return BadRequest(error.Message);
+            }
+        }
+
+
+           [HttpGet("{id}")]
+        public ActionResult<Vault> GetById(int id)
+        {
+            try
+            {
+                Vault vault = _vaultsService.GetById(id);
+                return Ok(vault);
+            }
+            catch (System.Exception error)
+            {
+
+                return BadRequest(error.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<ActionResult<String>> Delete(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                _vaultsService.Delete(id, userInfo.Id);
+                return Ok("DELORTED!");
             }
             catch (System.Exception error)
             {
