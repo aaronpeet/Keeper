@@ -38,10 +38,12 @@ namespace Keeper.Controllers
 
 
            [HttpGet("{id}")]
-        public ActionResult<Vault> GetById(int id)
+           [Authorize]
+        public async Task<ActionResult<Vault>> GetById(int id)
         {
             try
             {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 Vault vault = _vaultsService.GetById(id);
                 return Ok(vault);
             }
