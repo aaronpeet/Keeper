@@ -45,6 +45,10 @@ namespace Keeper.Controllers
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 Vault vault = _vaultsService.GetById(id);
+                if(userInfo.Id != vault.CreatorId && vault.IsPrivate != false)
+                {
+                    return BadRequest("This vault is private");
+                }
                 return Ok(vault);
             }
             catch (System.Exception error)
