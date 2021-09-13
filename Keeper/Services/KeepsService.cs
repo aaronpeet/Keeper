@@ -24,6 +24,11 @@ namespace Keeper.Services
             return _keepsRepo.Get();
         }
 
+        internal List<Keep> GetProfileKeeps(string id)
+        {
+            return _keepsRepo.GetProfileKeeps(id);
+        }
+
         internal Keep GetById(int id)
         {
             Keep found = _keepsRepo.GetById(id);

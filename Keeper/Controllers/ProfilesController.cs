@@ -1,6 +1,7 @@
 using Keeper.Models;
 using Keeper.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Keeper.Controllers
 {
@@ -28,6 +29,21 @@ namespace Keeper.Controllers
             }
             catch (System.Exception error)
             {
+
+                return BadRequest(error.Message);
+            }
+        }
+
+        [HttpGet("{id}/keeps")]
+        public ActionResult<List<Keep>> GetProfileKeeps(string id)
+        {
+           try
+           {
+                List<Keep> keeps = _keepsService.GetProfileKeeps(id);
+                return Ok(keeps);
+            }
+           catch (System.Exception error)
+           {
 
                 return BadRequest(error.Message);
             }
