@@ -16,6 +16,10 @@ namespace Keeper.Models
         public int? Keeps { get; set; } = 0;
         public string CreatorId { get; set; }
         public Profile Creator { get; set; }
+    }
 
+    public class VaultKeepViewModel : Keep
+    {
+        public int VaultKeepId { get; set; }
     }
 }

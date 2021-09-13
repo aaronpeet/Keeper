@@ -34,6 +34,11 @@ namespace Keeper.Services
             return found;
         }
 
+        internal List<VaultKeepViewModel> GetByVaultId(int vaultId)
+        {
+            return _keepsRepo.GetByVaultId(vaultId);
+        }
+
         internal Keep Edit(Keep updatedKeep)
         {
             Keep original = GetById(updatedKeep.Id);

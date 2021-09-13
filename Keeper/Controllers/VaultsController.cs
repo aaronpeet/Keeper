@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Keeper.Models;
 using Keeper.Services;
 using System;
+using System.Collections.Generic;
 
 namespace Keeper.Controllers
 {
@@ -13,11 +14,11 @@ namespace Keeper.Controllers
     public class VaultsController : ControllerBase
     {
         private readonly VaultsService _vaultsService;
-        private readonly AccountService _accountService;
-        public VaultsController(VaultsService vaultsService, AccountService accountService)
+        private readonly KeepsService _keepsService;
+        public VaultsController(VaultsService vaultsService, KeepsService keepsService)
         {
             _vaultsService = vaultsService;
-            _accountService = accountService;
+            _keepsService = keepsService;
         }
 
         [HttpPost]
@@ -50,6 +51,21 @@ namespace Keeper.Controllers
                     return BadRequest("This vault is private");
                 }
                 return Ok(vault);
+            }
+            catch (System.Exception error)
+            {
+
+                return BadRequest(error.Message);
+            }
+        }
+
+               [HttpGet("{id}/keeps")]
+        public ActionResult<List<VaultKeepViewModel>> GetKeeps(int id)
+        {
+            try
+            {
+                List<VaultKeepViewModel> keeps = _keepsService.GetByVaultId(id);
+                return Ok(keeps);
             }
             catch (System.Exception error)
             {
