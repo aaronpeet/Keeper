@@ -4,6 +4,7 @@ using Keeper.Services;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Keeper.Controllers
 {
@@ -27,6 +28,22 @@ namespace Keeper.Controllers
                 newVaultKeep.CreatorId = userInfo.Id;
                 VaultKeep vaultKeep = _vaultKeepsService.Create(newVaultKeep);
                 return Ok(vaultKeep);
+            }
+            catch (System.Exception error)
+            {
+
+                return BadRequest(error.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<String>> Delete(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                _vaultKeepsService.Delete(id, userInfo.Id);
+                return Ok("DELORTED!");
             }
             catch (System.Exception error)
             {

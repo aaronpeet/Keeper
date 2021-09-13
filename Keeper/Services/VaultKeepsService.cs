@@ -15,5 +15,25 @@ namespace Keeper.Services
         {
             return _vaultKeepsRepo.Create(newVaultKeep);
         }
+
+        private VaultKeep GetById(int id)
+        {
+            VaultKeep found = _vaultKeepsRepo.GetById(id);
+            if(found == null)
+            {
+                throw new System.Exception("Invalid Id");
+            }
+            return found;
+        }
+
+        internal void Delete(int id, string userId)
+        {
+            VaultKeep toDelete = GetById(id);
+            if(toDelete.CreatorId != userId)
+            {
+                throw new System.Exception("Invalid access, this is not yours to delete.");
+            }
+            _vaultKeepsRepo.Delete(id);
+        }
     }
 }
