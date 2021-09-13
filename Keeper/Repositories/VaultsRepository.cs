@@ -59,7 +59,7 @@ namespace Keeper.Repositories
             WHERE id = @id
             ;";
             _db.Execute(sql, updatedVault);
-            return updatedVault;
+            return GetById(updatedVault.Id);
         }
     }
 }
