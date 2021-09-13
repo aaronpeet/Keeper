@@ -13,9 +13,11 @@ namespace Keeper.Controllers
     public class VaultsController : ControllerBase
     {
         private readonly VaultsService _vaultsService;
-        public VaultsController(VaultsService vaultsService)
+        private readonly AccountService _accountService;
+        public VaultsController(VaultsService vaultsService, AccountService accountService)
         {
             _vaultsService = vaultsService;
+            _accountService = accountService;
         }
 
         [HttpPost]
@@ -38,14 +40,12 @@ namespace Keeper.Controllers
 
 
            [HttpGet("{id}")]
-           [Authorize]
-        public async Task<ActionResult<Vault>> GetById(int id)
+        public ActionResult<Vault> GetById(int id)
         {
             try
             {
-                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 Vault vault = _vaultsService.GetById(id);
-                if(userInfo.Id != vault.CreatorId && vault.IsPrivate != false)
+                if(vault.IsPrivate != false)
                 {
                     return BadRequest("This vault is private");
                 }
