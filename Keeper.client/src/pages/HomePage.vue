@@ -1,5 +1,5 @@
 <template>
-  <div class="home flex-grow-1 container p-0">
+  <div class="home flex-grow-1 container-fluid mt-3">
     <div class="card-columns">
       <KeepsCard v-for="k in keeps" :key="k.id" :keep="k" />
     </div>

@@ -1,11 +1,13 @@
 <template>
   <div class="card">
     <img class="card-img rounded shadow action" :src="keep.img" alt="keep image">
-    <div class="card-img-overlay">
-      <h5 class="card-title text-light">
+    <div class="card-img-overlay d-flex align-items-end justify-content-between">
+      <h5 class="card-title text-light text-left">
         {{ keep.name }}
       </h5>
-      <img class="rounded-pill" :src="keep.creator.picture" alt="keep creator image">
+      <router-link :to="{ name: 'About' }" class="nav-link">
+        <img class="rounded-pill" :src="keep.creator.picture" alt="keep creator image">
+      </router-link>
     </div>
   </div>
 </template>
@@ -26,5 +28,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.rounded-pill{
+    max-height: 40px;
+}
+.card-title{
+    text-shadow: black 1px 1px 1px;
+}
 
 </style>
