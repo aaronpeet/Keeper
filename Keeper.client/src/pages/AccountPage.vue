@@ -1,5 +1,5 @@
 <template>
-  <div class="about container-fluid">
+  <div class="about container-fluid mt-3">
     <div class="row">
       <div class="col-md-3 w-100 rounded">
         <img :src="account.picture" alt="profile picture">
@@ -12,13 +12,19 @@
     </div>
     <div class="row">
       <div class="col">
-        Add Vaults
+        <h3>Add Vault</h3>
       </div>
+      <!-- <div class="col">
+        <VaultsCard />
+      </div> -->
     </div>
     <div class="row">
       <div class="col">
-        Add Keeps
+        <h3>Add Keep</h3>
       </div>
+      <!-- <div class="cards-columns">
+        <KeepsCard />
+      </div> -->
     </div>
   </div>
 </template>
