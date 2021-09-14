@@ -36,6 +36,7 @@ namespace Keeper.Services
             {
                 throw new System.Exception("invalid id");
             }
+            found.Views++;
             return found;
         }
 
