@@ -1,9 +1,7 @@
 <template>
-  <div class="home flex-grow-1 container">
-    <div class="row">
-      <div class="col" v-for="k in keeps" :key="k.id">
-        <KeepsCard :keep="k" />
-      </div>
+  <div class="home flex-grow-1 container p-0">
+    <div class="card-columns">
+      <KeepsCard v-for="k in keeps" :key="k.id" :keep="k" />
     </div>
   </div>
 </template>
@@ -30,12 +28,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home{
-  text-align: center;
-  user-select: none;
-  > img{
-    height: 200px;
-    width: 200px;
-  }
-}
+
 </style>
