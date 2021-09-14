@@ -1,5 +1,6 @@
 using Keeper.Models;
 using Keeper.Repositories;
+using System.Collections.Generic;
 
 namespace Keeper.Services
 {
@@ -24,6 +25,12 @@ namespace Keeper.Services
                 throw new System.Exception("Invalid id");
             }
             return found;
+        }
+
+        internal List<Vault> GetProfileVaults(string id)
+        {
+            List<Vault> vaults = _vaultsRepo.GetProfileVaults(id);
+            return vaults;
         }
 
         internal void Delete(int vaultId, string userId)

@@ -49,5 +49,20 @@ namespace Keeper.Controllers
             }
         }
 
+             [HttpGet("{id}/vaults")]
+        public ActionResult<List<Vault>> GetProfileVaults(string id)
+        {
+           try
+           {
+                List<Vault> vaults = _vaultsService.GetProfileVaults(id);
+                return Ok(vaults);
+            }
+           catch (System.Exception error)
+           {
+
+                return BadRequest(error.Message);
+            }
+        }
+
     }
 }

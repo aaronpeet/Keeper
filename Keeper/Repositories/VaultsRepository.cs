@@ -2,6 +2,7 @@ using System.Data;
 using Dapper;
 using Keeper.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Keeper.Repositories
 {
@@ -40,6 +41,22 @@ namespace Keeper.Repositories
                 vault.Creator = prof;
                 return vault;
             }, new{id}, splitOn: "id").FirstOrDefault();
+        }
+
+               public List<Vault> GetProfileVaults(string id)
+        {
+            string sql = @"
+            SELECT
+            a.*,
+            v.*
+            FROM vaults v
+            JOIN accounts a ON a.id = v.creatorId
+            WHERE v.creatorId = @id
+            ;";
+            return _db.Query<Profile, Vault, Vault>(sql, (prof, vault)=>{
+                vault.Creator = prof;
+                return vault;
+            }, new {id}, splitOn:"id").ToList();
         }
 
         public void Delete(int id)
