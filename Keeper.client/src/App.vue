@@ -6,8 +6,8 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
+    <div class="bg-grey text-light text-center p-4">
+      <h3>Made with 💖 by Aaron Peet</h3>
     </div>
   </footer>
 </template>
