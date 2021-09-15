@@ -16,9 +16,9 @@
           Add Vault
         </button>
       </div>
-      <!-- <div class="col">
-        <VaultsCard />
-      </div> -->
+      <div class="col">
+        <VaultsCard v-for="v in activeVaults" :key="v.id" :vault="v" />
+      </div>
     </div>
     <div class="row">
       <div class="col">
@@ -26,9 +26,9 @@
           Add Keep
         </button>
       </div>
-      <!-- <div class="cards-columns">
-        <KeepsCard />
-      </div> -->
+      <div class="card-columns">
+        <ProfileKeepsCard v-for="k in activeKeeps" :key="k.id" :keep="k" />
+      </div>
     </div>
   </div>
 </template>
@@ -37,22 +37,23 @@
 import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
-import { keepsService } from '../services/KeepsService'
-import { vaultsService } from '../services/VaultsService'
+import { profilesService } from '../services/ProfilesService'
 import { useRoute } from 'vue-router'
 export default {
   setup() {
     const route = useRoute()
     onMounted(async() => {
       try {
-        await keepsService.getProfileKeeps(route.params.id)
-        await vaultsService.getProfileVaults(route.params.id)
+        await profilesService.getProfileKeeps(route.params.id)
+        await profilesService.getProfileVaults(route.params.id)
       } catch (error) {
         Pop.toast(error, 'error')
       }
     })
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      activeKeeps: computed(() => AppState.activeKeeps),
+      activeVaults: computed(() => AppState.activeVaults)
     }
   }
 }
