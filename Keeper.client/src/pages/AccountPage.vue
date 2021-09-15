@@ -6,13 +6,13 @@
       </div>
       <div class="col-md-9">
         <h2>{{ account.name }}</h2>
-        <h4>Keeps: 24</h4>
-        <h4>Vaults: 5</h4>
+        <h4>Keeps: {{ activeKeeps.length }}</h4>
+        <h4>Vaults: {{ activeVaults.length }}</h4>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <button class="btn btn-success">
+        <button class="btn btn-success mt-3">
           Add Vault
         </button>
       </div>
@@ -60,7 +60,10 @@ export default {
 </script>
 
 <style scoped>
-img {
-  max-width: 100px;
+
+  @import "bootstrap";
+
+.card-columns {
+
 }
-</style>
+ </style>
