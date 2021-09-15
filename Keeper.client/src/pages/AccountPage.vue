@@ -12,7 +12,9 @@
     </div>
     <div class="row">
       <div class="col">
-        <h3>Add Vault</h3>
+        <button class="btn btn-success">
+          Add Vault
+        </button>
       </div>
       <!-- <div class="col">
         <VaultsCard />
@@ -20,7 +22,9 @@
     </div>
     <div class="row">
       <div class="col">
-        <h3>Add Keep</h3>
+        <button class="btn btn-success mt-3">
+          Add Keep
+        </button>
       </div>
       <!-- <div class="cards-columns">
         <KeepsCard />
@@ -30,11 +34,23 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
+import Pop from '../utils/Notifier'
+import { keepsService } from '../services/KeepsService'
+import { vaultsService } from '../services/VaultsService'
+import { useRoute } from 'vue-router'
 export default {
-  name: 'Account',
   setup() {
+    const route = useRoute()
+    onMounted(async() => {
+      try {
+        await keepsService.getProfileKeeps(route.params.id)
+        await vaultsService.getProfileVaults(route.params.id)
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
+    })
     return {
       account: computed(() => AppState.account)
     }
