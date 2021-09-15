@@ -1,5 +1,5 @@
 <template>
-  <div class="about container-fluid mt-3">
+  <div class="about container-fluid mt-3 my-3">
     <div class="row">
       <div class="col-md-3 rounded">
         <img :src="account.picture" alt="profile picture">
@@ -22,10 +22,11 @@
     </div>
     <div class="row">
       <div class="col">
-        <button class="btn btn-success mt-3">
+        <button class="btn btn-success mt-3" data-toggle="modal" data-target="#createKeepModal" title="create a keep">
           Add Keep
         </button>
       </div>
+      <CreateKeepModal />
       <div class="card-columns mt-3">
         <ProfileKeepsCard v-for="k in activeKeeps" :key="k.id" :keep="k" />
       </div>
