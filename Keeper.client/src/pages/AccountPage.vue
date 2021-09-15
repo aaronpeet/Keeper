@@ -16,7 +16,7 @@
           Add Vault
         </button>
       </div>
-      <div class="col">
+      <div class="card-columns mt-3">
         <VaultsCard v-for="v in activeVaults" :key="v.id" :vault="v" />
       </div>
     </div>
@@ -26,7 +26,7 @@
           Add Keep
         </button>
       </div>
-      <div class="card-columns">
+      <div class="card-columns mt-3">
         <ProfileKeepsCard v-for="k in activeKeeps" :key="k.id" :keep="k" />
       </div>
     </div>
