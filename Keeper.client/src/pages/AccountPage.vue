@@ -1,7 +1,7 @@
 <template>
   <div class="about container-fluid mt-3">
     <div class="row">
-      <div class="col-md-3 w-100 rounded">
+      <div class="col-md-3 rounded">
         <img :src="account.picture" alt="profile picture">
       </div>
       <div class="col-md-9">

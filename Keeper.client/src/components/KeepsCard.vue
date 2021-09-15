@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img class="card-img rounded shadow action" :src="keep.img" alt="keep image">
+    <img class="card-img rounded shadow" :src="keep.img" alt="keep image">
     <div class="card-img-overlay d-flex align-items-end justify-content-between">
       <h5 class="card-title text-light text-left">
         {{ keep.name }}
