@@ -45,6 +45,14 @@ namespace Keeper.Services
             return _keepsRepo.GetByVaultId(vaultId);
         }
 
+        internal Keep IncrementKeeps(int id)
+        {
+            Keep newKeepCount = GetById(id);
+            newKeepCount.Keeps++;
+            Edit(newKeepCount);
+            return newKeepCount;
+        }
+
         internal Keep Edit(Keep updatedKeep)
         {
             Keep original = GetById(updatedKeep.Id);
