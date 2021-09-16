@@ -12,6 +12,7 @@
     </div>
     <div class="row">
       <div class="col">
+        <h1>VAULTS</h1>
         <button class="btn btn-success mt-3" data-toggle="modal" data-target="#createVaultModal" title="create a vault">
           Add Vault
         </button>
@@ -23,6 +24,7 @@
     </div>
     <div class="row">
       <div class="col">
+        <h1>KEEPS</h1>
         <button class="btn btn-success mt-3" data-toggle="modal" data-target="#createKeepModal" title="create a keep">
           Add Keep
         </button>

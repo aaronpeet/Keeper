@@ -5,7 +5,7 @@
       <h5 class="card-title text-light text-left">
         {{ keep.name }}
       </h5>
-      <router-link :to="{ name: 'About' }" class="nav-link">
+      <router-link :to="{ name: 'About', params: {id: keep.creatorId} }" class="nav-link">
         <img class="rounded-pill" :src="keep.creator.picture" alt="keep creator image">
       </router-link>
     </div>
