@@ -7,6 +7,7 @@ namespace Keeper.Services
     public class KeepsService
     {
         private readonly KeepsRepository _keepsRepo;
+        private readonly VaultsService _vaultsService;
 
         public KeepsService(KeepsRepository keepsRepo)
         {
@@ -41,7 +42,7 @@ namespace Keeper.Services
         }
 
         internal List<VaultKeepViewModel> GetByVaultId(int vaultId)
-        {
+        {   
             return _keepsRepo.GetByVaultId(vaultId);
         }
 
