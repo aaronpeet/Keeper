@@ -12,10 +12,11 @@
     </div>
     <div class="row">
       <div class="col">
-        <button class="btn btn-success mt-3">
+        <button class="btn btn-success mt-3" data-toggle="modal" data-target="#createVaultModal" title="create a vault">
           Add Vault
         </button>
       </div>
+      <CreateVaultModal />
       <div class="card-columns mt-3">
         <VaultsCard v-for="v in activeVaults" :key="v.id" :vault="v" />
       </div>
@@ -62,9 +63,4 @@ export default {
 
 <style scoped>
 
-  @import "bootstrap";
-
-.card-columns {
-
-}
  </style>
