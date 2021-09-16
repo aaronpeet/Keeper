@@ -5,11 +5,16 @@
       <h5 class="card-title text-light text-left">
         {{ vault.name }}
       </h5>
+      <button class="btn btn-danger" @click="deleteVault(vault.id)">
+        Remove Vault
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { vaultsService } from '../services/VaultsService'
+import Pop from '../utils/Notifier'
 export default {
   props: {
     vault: {
@@ -20,6 +25,15 @@ export default {
 
   setup() {
     return {
+      async deleteVault(id) {
+        try {
+          if (await Pop.confirm()) {
+            await vaultsService.deleteVault(id)
+          }
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   }
 }

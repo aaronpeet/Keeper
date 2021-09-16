@@ -6,7 +6,7 @@
         {{ keep.name }}
       </h5>
       <button class="btn btn-danger" @click="deleteKeep(keep.id)">
-        Remove
+        Remove Keep
       </button>
     </div>
   </div>
