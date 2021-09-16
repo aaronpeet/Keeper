@@ -26,9 +26,15 @@ namespace Keeper.Controllers
         {
             try
             {
+                
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 newVaultKeep.CreatorId = userInfo.Id;
                 VaultKeep vaultKeep = _vaultKeepsService.Create(newVaultKeep);
+                if(newVaultKeep.CreatorId != userInfo.Id)
+                {
+                    return BadRequest("You cannot create a vault here");
+                }
+              
                 _keepsService.IncrementKeeps(newVaultKeep.KeepId);
                 return Ok(vaultKeep);
             }

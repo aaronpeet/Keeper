@@ -7,7 +7,6 @@ namespace Keeper.Services
     public class KeepsService
     {
         private readonly KeepsRepository _keepsRepo;
-        private readonly VaultsService _vaultsService;
 
         public KeepsService(KeepsRepository keepsRepo)
         {

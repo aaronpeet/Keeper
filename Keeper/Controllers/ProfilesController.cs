@@ -50,7 +50,7 @@ namespace Keeper.Controllers
         }
 
              [HttpGet("{id}/vaults")]
-        public ActionResult<List<Vault>> GetProfileVaults(string id)
+        public ActionResult<List<Vault>> GetProfileVaultsAsync(string id)
         {
            try
            {
