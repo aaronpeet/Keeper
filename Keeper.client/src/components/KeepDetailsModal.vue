@@ -2,8 +2,7 @@
   <!-- Modal -->
   <div
     class="modal fade"
-    :id="'keepDetailsModal'
-      +keep.id"
+    :id="'keepDetailsModal' + keep.id"
     tabindex="-1"
     role="dialog"
     aria-labelledby="modelTitleId"

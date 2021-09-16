@@ -3,7 +3,7 @@
     <div class="card-columns">
       <KeepsCard v-for="k in keeps" :key="k.id" :keep="k" />
     </div>
-    <!-- <KeepDetailsModal />  -->
+    <KeepDetailsModal v-for="k in keeps" :key="k.id" :keep="k" />
   </div>
 </template>
 

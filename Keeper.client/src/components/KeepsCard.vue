@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" data-toggle="modal" :data-target="'#keepDetailsModal' + keep.id" title="View keep details">
     <img class="card-img rounded shadow" :src="keep.img" alt="keep image">
     <div class="card-img-overlay d-flex align-items-end justify-content-between">
       <h5 class="card-title text-light text-left">
