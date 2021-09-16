@@ -5,11 +5,16 @@
       <h5 class="card-title text-light text-left">
         {{ keep.name }}
       </h5>
+      <button class="btn btn-danger" @click="deleteKeep(keep.id)">
+        Remove
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { keepsService } from '../services/KeepsService'
+import Pop from '../utils/Notifier'
 export default {
   props: {
     keep: {
@@ -19,7 +24,15 @@ export default {
   },
 
   setup() {
-    return {}
+    return {
+      async deleteKeep(id) {
+        try {
+          await keepsService.deleteKeep(id)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
+    }
   }
 }
 </script>
