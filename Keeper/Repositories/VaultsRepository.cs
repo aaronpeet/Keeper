@@ -59,6 +59,22 @@ namespace Keeper.Repositories
             }, new {id}, splitOn:"id").ToList();
         }
 
+                   public List<Vault> GetOpenProfileVaults(string id)
+        {
+            string sql = @"
+            SELECT
+            a.*,
+            v.*
+            FROM vaults v
+            JOIN accounts a ON a.id = v.creatorId
+            WHERE v.creatorId = @id AND v.isPrivate = 0
+            ;";
+            return _db.Query<Profile, Vault, Vault>(sql, (prof, vault)=>{
+                vault.Creator = prof;
+                return vault;
+            }, new {id}, splitOn:"id").ToList();
+        }
+
         public void Delete(int id)
         {
             string sql = "DELETE FROM vaults WHERE id = @id LIMIT 1;";

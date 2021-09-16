@@ -6,13 +6,23 @@ namespace Keeper.Services
     public class VaultKeepsService
     {
         private readonly VaultKeepsRepository _vaultKeepsRepo;
-        public VaultKeepsService(VaultKeepsRepository vaultKeepsRepo)
+        private readonly VaultsRepository _vaultsRepo;
+        public VaultKeepsService(VaultKeepsRepository vaultKeepsRepo, VaultsRepository vaultsRepo)
         {
             _vaultKeepsRepo = vaultKeepsRepo;
+            _vaultsRepo = vaultsRepo;
         }
 
         internal VaultKeep Create(VaultKeep newVaultKeep)
         {
+            Vault vault = _vaultsRepo.GetById(newVaultKeep.VaultId);
+            if(vault.CreatorId != newVaultKeep.CreatorId)
+            {
+                throw new System.Exception("You cannot add a Keep in here.");
+            }
+            //get the vault
+            //if vault.creatorId != newVaultKeep.creatorId
+            //throw new exception
             return _vaultKeepsRepo.Create(newVaultKeep);
         }
 

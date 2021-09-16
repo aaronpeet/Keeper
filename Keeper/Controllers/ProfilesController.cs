@@ -2,6 +2,8 @@ using Keeper.Models;
 using Keeper.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using CodeWorks.Auth0Provider;
+using System.Threading.Tasks;
 
 namespace Keeper.Controllers
 {
@@ -50,11 +52,12 @@ namespace Keeper.Controllers
         }
 
              [HttpGet("{id}/vaults")]
-        public ActionResult<List<Vault>> GetProfileVaultsAsync(string id)
+        public async Task<ActionResult<List<Vault>>> GetProfileVaults(string id)
         {
            try
            {
-                List<Vault> vaults = _vaultsService.GetProfileVaults(id);
+               Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<Vault> vaults = _vaultsService.GetProfileVaults(userInfo?.Id, id);
                 return Ok(vaults);
             }
            catch (System.Exception error)

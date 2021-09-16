@@ -27,10 +27,19 @@ namespace Keeper.Services
             return found;
         }
 
-        internal List<Vault> GetProfileVaults(string id)
+        internal List<Vault> GetProfileVaults(string userId, string id)
         {
+            
+            if(userId == id)
+            {
             List<Vault> vaults = _vaultsRepo.GetProfileVaults(id);
             return vaults;
+            } else
+            {
+                List<Vault> vaults = _vaultsRepo.GetOpenProfileVaults(id);
+                return vaults;
+            }
+           
         }
 
         internal void Delete(int vaultId, string userId)
