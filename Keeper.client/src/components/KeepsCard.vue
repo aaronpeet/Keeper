@@ -1,5 +1,5 @@
 <template>
-  <div class="card" data-toggle="modal" :data-target="'#keepDetailsModal' + keep.id" title="View keep details">
+  <div class="card" @click="getKeepById(keep.id)" data-toggle="modal" :data-target="'#keepDetailsModal' + keep.id" title="View keep details">
     <img class="card-img rounded shadow" :src="keep.img" alt="keep image">
     <div class="card-img-overlay d-flex align-items-end justify-content-between">
       <h5 class="card-title text-light text-left">
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { keepsService } from '../services/KeepsService'
+import Pop from '../utils/Notifier'
 export default {
   props: {
     keep: {
@@ -22,7 +24,15 @@ export default {
   },
 
   setup() {
-    return {}
+    return {
+      async getKeepById(id) {
+        try {
+          await keepsService.getKeepById(id)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
+    }
   }
 }
 </script>

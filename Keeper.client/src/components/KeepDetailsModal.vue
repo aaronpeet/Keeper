@@ -11,9 +11,10 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content modal-height">
         <div class="modal-header">
-          <h3 class="modal-title">
+          <h1 class="modal-title">
             {{ keep.name }}
-          </h3>
+          </h1>
+
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -27,6 +28,14 @@
               >
             </div>
             <div class="col-md-9 col-12 px-3">
+              <div class="d-flex justify-content-between ml-3">
+                <div>
+                  <p>Keeps: {{ keep.keeps }}</p>
+                </div>
+                <div>
+                  <p>Views: {{ keep.views }}</p>
+                </div>
+              </div>
               <p>{{ keep.description }}</p>
             </div>
           </div>
