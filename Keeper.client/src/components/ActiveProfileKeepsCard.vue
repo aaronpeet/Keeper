@@ -1,0 +1,32 @@
+<template>
+  <div class="card">
+    <img class="card-img rounded shadow" :src="keep.img" alt="keep image">
+    <div class="card-img-overlay d-flex align-items-end justify-content-between">
+      <h5 class="card-title text-light text-left">
+        {{ keep.name }}
+      </h5>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    keep: {
+      type: Object,
+      required: true
+    }
+  },
+  setup() {
+    return {}
+  },
+  components: {}
+}
+</script>
+
+<style lang="scss" scoped>
+.card-title{
+    text-shadow: black 1px 1px 1px;
+}
+
+</style>

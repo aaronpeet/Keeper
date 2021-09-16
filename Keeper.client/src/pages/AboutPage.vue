@@ -15,7 +15,7 @@
         <h1>VAULTS</h1>
       </div>
       <div class="card-columns mt-3">
-        Vault Cards Here
+        <ActiveProfileVaultsCard v-for="v in activeVaults" :key="v.id" :vault="v" />
       </div>
     </div>
     <div class="row">
@@ -23,7 +23,7 @@
         <h1>KEEPS</h1>
       </div>
       <div class="card-columns mt-3">
-        Keep Cards here
+        <ActiveProfileKeepsCard v-for="k in activeKeeps" :key="k.id" :keep="k" />
       </div>
     </div>
   </div>
