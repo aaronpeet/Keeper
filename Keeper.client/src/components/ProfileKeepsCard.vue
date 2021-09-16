@@ -27,7 +27,9 @@ export default {
     return {
       async deleteKeep(id) {
         try {
-          await keepsService.deleteKeep(id)
+          if (await Pop.confirm()) {
+            await keepsService.deleteKeep(id)
+          }
         } catch (error) {
           Pop.toast(error, 'error')
         }
