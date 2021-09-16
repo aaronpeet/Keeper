@@ -2,6 +2,9 @@
   <div class="card">
     <img class="card-img rounded shadow" :src="vaultkeep.img" alt="keep image">
     <div class="card-img-overlay d-flex align-items-end justify-content-between">
+      <button v-if="vaultkeep.creatorId == account.id" class="btn btn-danger" @click="deleteVaultKeep(vaultkeep.id)">
+        Remove
+      </button>
       <h5 class="card-title text-light text-left">
         {{ vaultkeep.name }}
       </h5>
@@ -11,6 +14,10 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
+import Pop from '../utils/Notifier'
+import { vaultKeepsService } from '../services/VaultKeepsService'
 export default {
   props: {
     vaultkeep: {
@@ -18,8 +25,17 @@ export default {
       required: true
     }
   },
-  setup() {
-    return {}
+  setup(props) {
+    return {
+      account: computed(() => AppState.account),
+      async deleteVaultKeep() {
+        try {
+          await vaultKeepsService.deleteVaultKeep(props.vaultkeep.id)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
+    }
   }
 }
 </script>
