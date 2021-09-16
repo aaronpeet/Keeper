@@ -3,6 +3,7 @@
     <div class="card-columns">
       <KeepsCard v-for="k in keeps" :key="k.id" :keep="k" />
     </div>
+    <!-- <KeepDetailsModal />  -->
   </div>
 </template>
 
@@ -17,7 +18,7 @@ export default {
       try {
         await keepsService.getAllKeeps()
       } catch (error) {
-        Pop.toast('Something is had gone wrong', 'error')
+        Pop.toast('Something has gone wrong', 'error')
       }
     })
     return {
