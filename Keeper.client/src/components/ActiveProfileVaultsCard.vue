@@ -21,8 +21,7 @@ export default {
   },
   setup() {
     return {}
-  },
-  components: {}
+  }
 }
 </script>
 

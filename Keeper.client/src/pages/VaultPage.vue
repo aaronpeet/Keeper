@@ -12,16 +12,24 @@
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, reactive } from '@vue/runtime-core'
 import { useRoute } from 'vue-router'
 import Pop from '../utils/Notifier'
 import { AppState } from '../AppState'
 import { vaultsService } from '../services/VaultsService'
+import { router } from '../router'
 export default {
   setup() {
     const route = useRoute()
+    const state = reactive({
+      vault: computed(() => AppState.activeVault),
+      user: computed(() => AppState.user)
+    })
     onMounted(async() => {
       try {
+        if (state.vault.CreatorId !== state.user.Id && state.vault.IsPrivate !== false) {
+          router.push('Home')
+        }
         await vaultsService.getVaultById(route.params.id)
         await vaultsService.getVaultKeeps(route.params.id)
       } catch (error) {
@@ -29,8 +37,10 @@ export default {
       }
     })
     return {
+      state,
       vaultKeeps: computed(() => AppState.activeVaultKeeps),
-      activeVault: computed(() => AppState.activeVault)
+      activeVault: computed(() => AppState.activeVault),
+      user: computed(() => AppState.user)
     }
   }
 }
