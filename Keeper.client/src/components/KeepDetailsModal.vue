@@ -38,6 +38,22 @@
               </div>
               <p>{{ keep.description }}</p>
             </div>
+            <div class="col">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        id="dropdownMenu2"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                >
+                  Add to Vault
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <VaultSelect v-for="v in vaults" :key="v.id" :vault="v" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -51,6 +67,10 @@
 </template>
 
 <script>
+import { computed, onMounted, reactive } from '@vue/runtime-core'
+import { AppState } from '../AppState'
+import Pop from '../utils/Notifier'
+import { profilesService } from '../services/ProfilesService'
 export default {
   props: {
     keep: {
@@ -59,9 +79,21 @@ export default {
     }
   },
   setup() {
-    return {}
-  },
-  components: {}
+    const state = reactive({
+      account: computed(() => AppState.account)
+    })
+    onMounted(async() => {
+      try {
+        await profilesService.getProfileVaults(state.account.id)
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
+    })
+    return {
+      state,
+      vaults: computed(() => AppState.activeVaults)
+    }
+  }
 }
 </script>
 

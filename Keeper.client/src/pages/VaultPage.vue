@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid mt-3 my-3">
+  <div class="container-fluid mt-3">
     <h1>{{ activeVault.name }}</h1>
     <p>Keeps: {{ vaultKeeps.length }}</p>
     <div class="row">
