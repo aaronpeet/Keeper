@@ -82,13 +82,6 @@ export default {
     const state = reactive({
       account: computed(() => AppState.account)
     })
-    onMounted(async() => {
-      try {
-        await profilesService.getProfileVaults(state.account.id)
-      } catch (error) {
-        Pop.toast(error, 'error')
-      }
-    })
     return {
       state,
       vaults: computed(() => AppState.activeVaults)
