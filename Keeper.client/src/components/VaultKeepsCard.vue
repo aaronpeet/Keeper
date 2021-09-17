@@ -6,7 +6,7 @@
       <h5 class="card-title text-light text-left">
         {{ vaultkeep.name }}
       </h5>
-      <button v-if="vaultkeep.creatorId == account.id" class="btn btn-danger rounded-pill" title="Remove from vault" @click="deleteVaultKeep(vaultkeep.id)">
+      <button v-if="vaultkeep.creatorId == account.id" class="btn btn-danger rounded-pill" title="Remove from vault" @click="deleteVaultKeep(vaultkeep.vaultKeepId)">
         X
       </button>
     </div>
@@ -30,7 +30,7 @@ export default {
       account: computed(() => AppState.account),
       async deleteVaultKeep() {
         try {
-          await vaultKeepsService.deleteVaultKeep(props.vaultkeep.id)
+          await vaultKeepsService.deleteVaultKeep(props.vaultkeep.vaultKeepId)
         } catch (error) {
           Pop.toast(error, 'error')
         }
