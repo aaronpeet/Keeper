@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card action">
     <img class="card-img rounded shadow action" :src="keep.img" alt="keep image">
     <div class="card-img-overlay d-flex align-items-end justify-content-between">
       <h5 class="card-title text-light text-left">
@@ -42,6 +42,9 @@ export default {
 <style lang="scss" scoped>
 .card-title{
     text-shadow: black 1px 1px 1px;
+}
+.action:hover{
+ cursor: pointer;
 }
 
 </style>

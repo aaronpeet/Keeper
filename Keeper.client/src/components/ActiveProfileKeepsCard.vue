@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="getKeepById(keep.id)" data-toggle="modal" :data-target="'#keepDetailsModal' + keep.id" title="View keep details">
+  <div class="card action" @click="getKeepById(keep.id)" data-toggle="modal" :data-target="'#keepDetailsModal' + keep.id" title="View keep details">
     <img class="card-img rounded shadow" :src="keep.img" alt="keep image">
     <div class="card-img-overlay d-flex align-items-end justify-content-between">
       <h5 class="card-title text-light text-left">
@@ -36,6 +36,9 @@ export default {
 <style lang="scss" scoped>
 .card-title{
     text-shadow: black 1px 1px 1px;
+}
+.action:hover{
+ cursor: pointer;
 }
 
 </style>
