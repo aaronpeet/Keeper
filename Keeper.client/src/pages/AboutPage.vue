@@ -1,5 +1,5 @@
 <template>
-  <div class="about container mt-3 p-0">
+  <div class="about container mt-3 p-3">
     <div class="row">
       <div class="col-md-3 rounded">
         <img :src="activeProfile.picture" alt="profile picture">
