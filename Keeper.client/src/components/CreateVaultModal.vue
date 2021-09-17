@@ -46,6 +46,13 @@
               >
               <small id="nameHelpText" class="text-muted">Input Vault Description</small>
             </div>
+            <div class="form-check">
+              <input class="form-check-input" v-model="state.newVault.isPrivate" type="checkbox" value="" id="is Private">
+              <label class="form-check-label" for="flexCheckDefault">
+                Private?
+              </label>
+            </div>
+            <small id="nameHelpText" class="text-muted">A private vault can only be seen by you.</small>
             <div class="modal-footer p-0 pt-3">
               <button type="submit" class="btn btn-success">
                 Submit

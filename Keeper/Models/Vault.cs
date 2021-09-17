@@ -9,7 +9,7 @@ namespace Keeper.Models
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-        public bool? IsPrivate { get; set; }
+        public bool? IsPrivate { get; set; } = false;
         public string CreatorId { get; set; }
         public Profile Creator { get; set; }
         
