@@ -5,8 +5,8 @@
       <h5 class="card-title text-light text-left">
         {{ keep.name }}
       </h5>
-      <button class="btn btn-danger" @click="deleteKeep(keep.id)">
-        Remove Keep
+      <button class="btn btn-danger rounded-pill" title="Delete keep" @click="deleteKeep(keep.id)">
+        X
       </button>
     </div>
   </div>

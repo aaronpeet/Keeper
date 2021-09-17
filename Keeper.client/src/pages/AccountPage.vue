@@ -1,5 +1,5 @@
 <template>
-  <div class="about container-fluid mt-3 my-3">
+  <div class="about flex-grow-1 container mt-3 p-0">
     <div class="row">
       <div class="col-md-3 rounded">
         <img :src="account.picture" alt="profile picture">

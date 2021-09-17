@@ -2,8 +2,8 @@
   <div class="card">
     <img class="card-img rounded shadow" :src="vaultkeep.img" alt="keep image">
     <div class="card-img-overlay d-flex align-items-end justify-content-between">
-      <button v-if="vaultkeep.creatorId == account.id" class="btn btn-danger" @click="deleteVaultKeep(vaultkeep.id)">
-        Remove
+      <button v-if="vaultkeep.creatorId == account.id" class="btn btn-danger rounded-pill" title="Remove from vault" @click="deleteVaultKeep(vaultkeep.id)">
+        X
       </button>
       <h5 class="card-title text-light text-left">
         {{ vaultkeep.name }}
