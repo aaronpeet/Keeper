@@ -1,6 +1,7 @@
 <template>
-  <div class="container-fluid mt-3">
+  <div class="container mt-3">
     <h1>{{ activeVault.name }}</h1>
+    <h4><em>{{ activeVault.description }}</em></h4>
     <p>Keeps: {{ vaultKeeps.length }}</p>
     <div class="row">
       <div class="card-columns">
