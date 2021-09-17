@@ -26,6 +26,7 @@
         <ActiveProfileKeepsCard v-for="k in activeKeeps" :key="k.id" :keep="k" />
       </div>
     </div>
+    <KeepDetailsModal v-for="k in activeKeeps" :key="k.id" :keep="k" />
   </div>
 </template>
 

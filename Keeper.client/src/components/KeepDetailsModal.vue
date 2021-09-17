@@ -15,19 +15,19 @@
             {{ keep.name }}
           </h1>
 
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body modal-overflow">
-          <div class="row p-3 my-3 d-flex align-items-center">
-            <div class="col-md-3 col-12 mb-3">
+          <div class="row p-3 my-3">
+            <div class="col-md-6 col-12 mb-3">
               <img class="modalImg"
                    :src="keep.img"
                    :alt="keep.name"
               >
             </div>
-            <div class="col-md-9 col-12 px-3">
+            <div class="col-md-6 col-12 px-3">
               <div class="d-flex justify-content-between ml-3">
                 <div>
                   <p>Keeps: {{ keep.keeps }}</p>
@@ -36,7 +36,9 @@
                   <p>Views: {{ keep.views }}</p>
                 </div>
               </div>
-              <p>{{ keep.description }}</p>
+              <div>
+                <p><em>{{ keep.description }}</em></p>
+              </div>
             </div>
             <div class="col">
               <div class="dropdown">
@@ -46,6 +48,7 @@
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false"
+                        title="Add to vault"
                 >
                   Add to Vault
                 </button>
@@ -57,7 +60,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" title="close">
             Close
           </button>
         </div>
