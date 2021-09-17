@@ -9,6 +9,7 @@
         </vaultkeepscard>
       </div>
     </div>
+    <KeepDetailsModal v-for="vk in vaultKeeps" :key="vk.id" :vaultkeep="vk" />
   </div>
 </template>
 
