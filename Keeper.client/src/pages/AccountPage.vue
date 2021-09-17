@@ -57,7 +57,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       activeKeeps: computed(() => AppState.activeKeeps),
-      activeVaults: computed(() => AppState.activeVaults)
+      activeVaults: computed(() => AppState.myActiveVaults)
     }
   }
 }

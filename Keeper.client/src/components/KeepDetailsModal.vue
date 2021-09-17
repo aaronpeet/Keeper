@@ -85,7 +85,7 @@ export default {
     })
     return {
       state,
-      vaults: computed(() => AppState.activeVaults)
+      vaults: computed(() => AppState.myActiveVaults)
     }
   }
 }

@@ -18,7 +18,6 @@ export default {
   },
   setup(props) {
     const keep = computed(() => AppState.activeKeep)
-    const account = computed(() => AppState.account)
     const state = reactive({
       newVaultKeep: {}
     })
@@ -31,8 +30,7 @@ export default {
         try {
           state.newVaultKeep = {
             keepId: keep.value.id,
-            vaultId: props.vault.id,
-            creatorId: account.value.id
+            vaultId: props.vault.id
           }
           await vaultKeepsService.createVaultKeep(state.newVaultKeep)
           state.newVaultKeep = {}

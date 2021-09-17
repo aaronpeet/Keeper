@@ -43,7 +43,7 @@ export default {
       try {
         await profilesService.getProfile(route.params.id)
         await profilesService.getProfileKeeps(route.params.id)
-        await profilesService.getProfileVaults(route.params.id)
+        await profilesService.getActiveProfileVaults(route.params.id)
       } catch (error) {
         Pop.toast(error, 'error')
       }

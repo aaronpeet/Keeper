@@ -25,12 +25,14 @@ export default {
       required: true
     }
   },
-  setup(props) {
+  setup() {
     return {
       account: computed(() => AppState.account),
-      async deleteVaultKeep() {
+      async deleteVaultKeep(id) {
         try {
-          await vaultKeepsService.deleteVaultKeep(props.vaultkeep.vaultKeepId)
+          if (await Pop.confirm()) {
+            await vaultKeepsService.deleteVaultKeep(id)
+          }
         } catch (error) {
           Pop.toast(error, 'error')
         }
