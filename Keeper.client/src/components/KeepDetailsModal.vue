@@ -67,10 +67,8 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from '@vue/runtime-core'
+import { computed, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
-import Pop from '../utils/Notifier'
-import { profilesService } from '../services/ProfilesService'
 export default {
   props: {
     keep: {
