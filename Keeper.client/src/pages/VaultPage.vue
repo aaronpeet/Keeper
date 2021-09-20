@@ -36,6 +36,7 @@ export default {
         await vaultsService.getVaultKeeps(route.params.id)
       } catch (error) {
         Pop.toast(error, 'error')
+        // FIXME router push home
       }
     })
     return {
