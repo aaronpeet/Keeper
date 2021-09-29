@@ -81,14 +81,14 @@ namespace Keeper.Repositories
         {
             string sql = @"
             SELECT
-            a.*,
-            k.* 
-            FROM keeps k 
-            JOIN accounts a ON a.id = k.creatorId
-            WHERE k.id = @id;
+             a.*,
+             k.* 
+             FROM keeps k 
+             JOIN accounts a ON a.id = k.creatorId
+             WHERE k.id = @id;
             UPDATE keeps
-            SET views = views + 1
-            WHERE id = @id;";
+             SET views = views + 1
+             WHERE id = @id;";
             return _db.Query<Profile, Keep, Keep>(sql, (prof, keep)=>{
                 keep.Creator = prof;
                 return keep;
